@@ -14,7 +14,9 @@ namespace ChatRoom.Boot
         private static async Task MainAsync()
         {
             string correntStock = GetCurrentStockCSV();
-            Dictionary<string, string> a = DecodeCurrentStockCSV(correntStock);
+            Dictionary<string, string> decodedCurrentStock = DecodeCurrentStockCSV(correntStock);
+            string message = GetMessageForChatRooms(decodedCurrentStock);
+            // Integrate with rabittMQ
         }
 
         private static string GetCurrentStockCSV()
@@ -50,6 +52,14 @@ namespace ChatRoom.Boot
                 }
             }
             return result;
+        }
+
+        private static string GetMessageForChatRooms(Dictionary<string, string> decodedCSV)
+        {
+            return string.Format("{0} quote is ${1} per share",
+                decodedCSV["Symbol"],
+                decodedCSV["Close"]
+                );
         }
     }
 }
