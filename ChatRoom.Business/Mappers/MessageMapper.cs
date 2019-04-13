@@ -2,6 +2,7 @@
 using ChatRoom.Persistence.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ChatRoom.Business.Mappers
@@ -32,6 +33,11 @@ namespace ChatRoom.Business.Mappers
                 StockCode = message.StockCode,
                 Value = message.Value
             };
+        }
+
+        public static List<MessageModel> MapMesMapMessageEntityToMessageModel(List<MessageEntity> messages)
+        {
+            return messages.Select(x => MapMessageEntityToMessageModel(x)).ToList();
         }
     }
 }

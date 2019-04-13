@@ -18,9 +18,9 @@ namespace ChatRoom.Business.Services.Impl
             {
                 throw new Exception("Currently exist an user register with this key");
             }
+            user = Mapper.MapUserModelToUserEntity(userModel);
             user.Key = this.GetUserKey();
             user.Status = StatusEnum.Active.GetDescription();
-            user = Mapper.MapUserModelToUserEntity(userModel);
             this.InsertUser(user);
             return Mapper.MapUserEntityToUserModel(user);
         }

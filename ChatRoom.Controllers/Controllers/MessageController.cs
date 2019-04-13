@@ -23,11 +23,23 @@ namespace ChatRoom.Controllers.Controllers
         }
 
         [HttpPost("register-message")]
-        public ActionResult Post([FromBody] MessageModel message)
+        public ActionResult Post([FromBody] MessageModel message, [FromQuery] string stock)
         {
             try
             {
-                 return this.SuccessResponse(this._chatRoomService.RegisterMessage(message));
+                 return this.SuccessResponse(this._chatRoomService.RegisterMessage(message, stock));
+            }
+            catch (Exception e)
+            {
+                return this.BadRequest(e.Message);
+            }
+        }
+        [HttpGet("messages")]
+        public ActionResult GetMessages([FromQuery] int chatRoomId)
+        {
+            try
+            {
+                return this.SuccessResponse(this._chatRoomService.GetMessages(chatRoomId));
             }
             catch (Exception e)
             {

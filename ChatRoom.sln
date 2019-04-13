@@ -17,6 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatRoom.Client", "ChatRoom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatRoom.IdentityServer", "ChatRoom.IdentityServer\ChatRoom.IdentityServer.csproj", "{EAC84069-ADAB-43D0-BE4E-8F595C8E633D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{400661BB-B19F-413B-8686-30F4941C83D9}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatRoom.Boot", "ChatRoom.Boot\ChatRoom.Boot.csproj", "{11EAE4CF-52CA-4C3B-8FB2-77B24D264DA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +58,10 @@ Global
 		{EAC84069-ADAB-43D0-BE4E-8F595C8E633D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAC84069-ADAB-43D0-BE4E-8F595C8E633D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAC84069-ADAB-43D0-BE4E-8F595C8E633D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11EAE4CF-52CA-4C3B-8FB2-77B24D264DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11EAE4CF-52CA-4C3B-8FB2-77B24D264DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11EAE4CF-52CA-4C3B-8FB2-77B24D264DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11EAE4CF-52CA-4C3B-8FB2-77B24D264DA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

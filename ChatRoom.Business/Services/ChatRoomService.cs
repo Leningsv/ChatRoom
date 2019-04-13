@@ -1,4 +1,5 @@
-﻿using ChatRoom.Models.Messages;
+﻿using ChatRoom.Models.AssignmentUserChatRooms;
+using ChatRoom.Models.Messages;
 using ChatRoom.Models.Users;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,8 @@ namespace ChatRoom.Business.Services
     public interface ChatRoomService
     {
         UserModel RegisterUser(UserModel userModel);
-        MessageModel RegisterMessage(MessageModel messageModel);
+        AssignmentUserChatRoomModel RegisterAssignmentUserChatRoom(AssignmentUserChatRoomModel assignmentUserChatRoom);
+        MessageModel RegisterMessage(MessageModel messageModel, string stock);
+        List<MessageModel> GetMessages(int chatRoomId);
     }
 }

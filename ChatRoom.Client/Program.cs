@@ -41,10 +41,5 @@ namespace ChatRoom.Client
             }
             return tokenResponse;
         }
-
-        private static async Task RegisterUser(UserModel userModel)
-        {
-
-        }
     }
 }
