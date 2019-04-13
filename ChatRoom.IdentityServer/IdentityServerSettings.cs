@@ -1,15 +1,14 @@
-﻿using IdentityServer4.Models;
+﻿using ChatRoom.Utils.Enums;
+using IdentityServer4.Models;
 using IdentityServer4.Test;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ChatRoomIdentityServer
 {
     public class IdentityServerSettings
     {
-        // Implicit folw identity resources
+        private const string SECRET_CHAT_ROOM_CLIENT = "SecretChatRoomClient";
+        private const int DEFAUL_ACCESS_TOKEN_LIFE_TIME = 172800;
         public static IEnumerable<IdentityResource> GetIdentityResources()
         {
             return new List<IdentityResource>()
@@ -24,12 +23,14 @@ namespace ChatRoomIdentityServer
             {
                 new TestUser()
                 {
-                    Username = "Lenin Samaniego",
+                    SubjectId = "0",
+                    Username = "leningsv",
                     Password = "nada1234"
                 },
                 new TestUser()
                 {
-                    Username = "Guillermo",
+                    SubjectId = "1",
+                    Username = "leninsvg",
                     Password = "nada1234"
                 }
             };
@@ -38,7 +39,8 @@ namespace ChatRoomIdentityServer
         {
             return new List<ApiResource>()
             {
-                new ApiResource("ChatRoomResource", "Resource of principal aplication Chat room"),
+                new ApiResource(IdentityServerResourceEnum.ChatRoomResource.ToString(), 
+                    "Resource of principal aplication Chat room"),
             };
         }
 
@@ -49,13 +51,14 @@ namespace ChatRoomIdentityServer
             {
                 new Client()
                 {
-                    ClientId = "ChatRoomClient",
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    AccessTokenLifetime = DEFAUL_ACCESS_TOKEN_LIFE_TIME,
+                    ClientId = IdentityServerClientEnum.ChatRoomClient.ToString(),
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     ClientSecrets =
                     {
-                        new Secret("SecretChatRoomClient".Sha256())
+                        new Secret(SECRET_CHAT_ROOM_CLIENT.Sha256())
                     },
-                    AllowedScopes = { "ChatRoomResource" }
+                    AllowedScopes = { IdentityServerResourceEnum.ChatRoomResource.ToString() }
                 }
             };
         }

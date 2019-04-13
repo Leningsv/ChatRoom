@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatRoom.Controllers", "ChatRoom.Controllers\ChatRoom.Controllers.csproj", "{0CCEEA37-AF71-4A68-A52F-A95508FF98E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatRoom.Controllers", "ChatRoom.Controllers\ChatRoom.Controllers.csproj", "{0CCEEA37-AF71-4A68-A52F-A95508FF98E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatRoom.Persistence", "ChatRoom.Persistence\ChatRoom.Persistence.csproj", "{C44836D0-FE91-4FD2-9495-90B20F75F522}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatRoom.Persistence", "ChatRoom.Persistence\ChatRoom.Persistence.csproj", "{C44836D0-FE91-4FD2-9495-90B20F75F522}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatRoom.Models", "ChatRoom.Models\ChatRoom.Models.csproj", "{DD005462-C1A3-4BBC-A693-3ECD29BC8E4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatRoom.Models", "ChatRoom.Models\ChatRoom.Models.csproj", "{DD005462-C1A3-4BBC-A693-3ECD29BC8E4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatRoom.Business", "ChatRoom.Business\ChatRoom.Business.csproj", "{6FFC0EB5-5D7C-4D31-9637-DFDB8A42A433}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatRoom.Business", "ChatRoom.Business\ChatRoom.Business.csproj", "{6FFC0EB5-5D7C-4D31-9637-DFDB8A42A433}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatRoom.Utils", "ChatRoom.Utils\ChatRoom.Utils.csproj", "{7948FDD1-D5C3-4CF1-9A88-521F2CB4D99D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatRoom.Utils", "ChatRoom.Utils\ChatRoom.Utils.csproj", "{7948FDD1-D5C3-4CF1-9A88-521F2CB4D99D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatRoomIdentityServer", "ChatRoomIdentityServer\ChatRoomIdentityServer.csproj", "{7496EDA7-0AE5-49D4-9078-EBD7E76EB6EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatRoom.Client", "ChatRoom.Client\ChatRoom.Client.csproj", "{41E68FE8-202C-4EF3-A103-70269D8F06BA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatRoom.IdentityServer", "ChatRoom.IdentityServer\ChatRoom.IdentityServer.csproj", "{EAC84069-ADAB-43D0-BE4E-8F595C8E633D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +43,14 @@ Global
 		{7948FDD1-D5C3-4CF1-9A88-521F2CB4D99D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7948FDD1-D5C3-4CF1-9A88-521F2CB4D99D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7948FDD1-D5C3-4CF1-9A88-521F2CB4D99D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7496EDA7-0AE5-49D4-9078-EBD7E76EB6EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7496EDA7-0AE5-49D4-9078-EBD7E76EB6EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7496EDA7-0AE5-49D4-9078-EBD7E76EB6EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7496EDA7-0AE5-49D4-9078-EBD7E76EB6EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41E68FE8-202C-4EF3-A103-70269D8F06BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41E68FE8-202C-4EF3-A103-70269D8F06BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41E68FE8-202C-4EF3-A103-70269D8F06BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41E68FE8-202C-4EF3-A103-70269D8F06BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAC84069-ADAB-43D0-BE4E-8F595C8E633D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAC84069-ADAB-43D0-BE4E-8F595C8E633D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAC84069-ADAB-43D0-BE4E-8F595C8E633D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAC84069-ADAB-43D0-BE4E-8F595C8E633D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

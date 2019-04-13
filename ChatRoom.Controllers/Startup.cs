@@ -1,4 +1,8 @@
-﻿using ChatRoom.Persistence.Context;
+﻿using ChatRoom.Business.Services;
+using ChatRoom.Business.Services.Impl;
+using ChatRoom.Persistence.Context;
+using ChatRoom.Utils;
+using ChatRoom.Utils.Enums;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +27,15 @@ namespace ChatRoom.Controllers
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScopes();
             services.AddCustomDbContext(Configuration);
+            services.AddAuthentication("Bearer")
+              .AddIdentityServerAuthentication(options =>
+              {
+                  options.Authority = GeneralSettings.IDENTITY_SERVER_URL;
+                  options.RequireHttpsMetadata = false;
+                  options.ApiName = IdentityServerResourceEnum.ChatRoomResource.ToString();
+              });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -33,15 +45,13 @@ namespace ChatRoom.Controllers
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<ChatRoomContext>();
-                context.Database.EnsureCreated(); //.Migrate();
-                //this.LoadSeedersData(context);
-            }
-
+                context.Database.EnsureCreated();
+            }           
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
@@ -86,12 +96,6 @@ namespace ChatRoom.Controllers
         //}
         public static IServiceCollection AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
         {
-
-            //if (configuration.GetSection("ActiveEnvironment").Value == "Mem")
-            //{
-            //    services.AddDbContext<ChatRoomContext>(opt => opt.UseInMemoryDatabase());
-            //    return services;
-            //}
             string connectionString = configuration.GetSection("ChatRoomConectionString").Value;
             services.AddDbContext<ChatRoomContext>(options =>
             {
@@ -112,19 +116,7 @@ namespace ChatRoom.Controllers
 
         public static IServiceCollection AddScopes(this IServiceCollection services)
         {
-            //#region Repositories
-            //services.AddTransient<UserRepository, UserRepositoryImpl>();
-            //services.AddTransient<AuditRepository, AuditRepositoryImpl>();
-            //services.AddTransient<UserRoleRepository, UserRoleRepositoryImpl>();
-            //services.AddTransient<RoleRepository, RoleRepositoryImpl>();
-            //services.AddTransient<CountryRepository, CountryRepositoryImpl>();
-            //services.AddTransient<CityRepository, CityRepositoryImpl>();
-            //#endregion
-
-            //#region Services
-            //services.AddTransient<ApplicationMarketService, ApplicationMarketServiceImpl>();
-            //#endregion
-
+            services.AddTransient<ChatRoomService, ChatRoomServiceImpl>();
             return services;
         }
     }

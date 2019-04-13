@@ -1,12 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="IdentityModel" Version="3.10.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ChatRoom.Models\ChatRoom.Models.csproj" />
-    <ProjectReference Include="..\ChatRoom.Persistence\ChatRoom.Persistence.csproj" />
     <ProjectReference Include="..\ChatRoom.Utils\ChatRoom.Utils.csproj" />
   </ItemGroup>
 
