@@ -23,6 +23,8 @@ namespace ChatRoom.Persistence.Entities
         public string StockCode { get; set; }
         [Required]
         public string Value { get; set; }
+        [Required]
+        public DateTime CreateAt { get; set; }
         public AssignmentUserChatRoomEntity AssignmentUserChatRoom { get; set; }
     }
 }

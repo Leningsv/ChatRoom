@@ -1,15 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace ChatRoom.Utils
 {
     public static class GeneralFunctions
     {
+
+        public static JwtSecurityToken DecodeToken(string token)
+        {
+            JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+            JwtSecurityToken securityToken = handler.ReadToken(token) as JwtSecurityToken;
+            return securityToken;
+        }
+
         public static string GetDescription<T>(this T e) where T : IConvertible
         {
             if (e is Enum)

@@ -12,13 +12,15 @@ namespace ChatRoom.Business.Services.Impl
     {
         public UserModel RegisterUser(UserModel userModel)
         {
-            UserEntity user = this._chatRoomContext.Users.FirstOrDefault(u => u.Key == userModel.Key);
+            string key = this.GetUserKey();
+            UserEntity user = this._chatRoomContext.Users.FirstOrDefault(u => u.Key == key);
             if (user != null)
             {
                 throw new Exception("Currently exist an user register with this key");
             }
-            user = Mapper.MapUserModelToUserEntity(userModel);
+            user.Key = this.GetUserKey();
             user.Status = StatusEnum.Active.GetDescription();
+            user = Mapper.MapUserModelToUserEntity(userModel);
             this.InsertUser(user);
             return Mapper.MapUserEntityToUserModel(user);
         }
@@ -27,6 +29,10 @@ namespace ChatRoom.Business.Services.Impl
         {
             this._chatRoomContext.Add<UserEntity>(user);
             this._chatRoomContext.SaveChanges();
+        }
+        private string GetUserKey()
+        {
+            return this._httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "sub").Value;
         }
     }
 }

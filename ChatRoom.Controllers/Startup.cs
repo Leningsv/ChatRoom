@@ -1,10 +1,12 @@
 ﻿using ChatRoom.Business.Services;
 using ChatRoom.Business.Services.Impl;
 using ChatRoom.Persistence.Context;
+using ChatRoom.Persistence.Seeders.Impl;
 using ChatRoom.Utils;
 using ChatRoom.Utils.Enums;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -44,8 +46,9 @@ namespace ChatRoom.Controllers
         {
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
-                var context = serviceScope.ServiceProvider.GetRequiredService<ChatRoomContext>();
+                ChatRoomContext context = serviceScope.ServiceProvider.GetRequiredService<ChatRoomContext>();
                 context.Database.EnsureCreated();
+                this.LoadSeedersData(context);
             }           
             if (env.IsDevelopment())
             {
@@ -53,6 +56,11 @@ namespace ChatRoom.Controllers
             }
             app.UseAuthentication();
             app.UseMvc();
+        }
+        private void LoadSeedersData(ChatRoomContext chatRoomContext)
+        {
+            ChatRoomSeederImpl application = new ChatRoomSeederImpl(chatRoomContext);
+            application.LoadData();
         }
     }
 
@@ -70,30 +78,6 @@ namespace ChatRoom.Controllers
             });
             return services;
         }
-        //public static IServiceCollection ConfigureAuthorization(this IServiceCollection services, IConfiguration configuration)
-        //{
-        //    string secretKeyJwt = configuration.GetSection("Environments")
-        //        .GetSection(configuration.GetSection("ActiveEnvironment").Value).GetSection("SecretKeyJWT").Value;
-        //    byte[] key = Encoding.ASCII.GetBytes(secretKeyJwt);
-        //    services.AddAuthentication(x =>
-        //    {
-        //        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        //        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        //    })
-        //    .AddJwtBearer(x =>
-        //    {
-        //        x.RequireHttpsMetadata = false;
-        //        x.SaveToken = true;
-        //        x.TokenValidationParameters = new TokenValidationParameters
-        //        {
-        //            ValidateIssuerSigningKey = true,
-        //            IssuerSigningKey = new SymmetricSecurityKey(key),
-        //            ValidateIssuer = false,
-        //            ValidateAudience = false
-        //        };
-        //    });
-        //    return services;
-        //}
         public static IServiceCollection AddCustomDbContext(this IServiceCollection services, IConfiguration configuration)
         {
             string connectionString = configuration.GetSection("ChatRoomConectionString").Value;
@@ -116,6 +100,7 @@ namespace ChatRoom.Controllers
 
         public static IServiceCollection AddScopes(this IServiceCollection services)
         {
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<ChatRoomService, ChatRoomServiceImpl>();
             return services;
         }

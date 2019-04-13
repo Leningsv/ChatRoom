@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCoreCompatibility" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ChatRoom.Models\ChatRoom.Models.csproj" />
     <ProjectReference Include="..\ChatRoom.Persistence\ChatRoom.Persistence.csproj" />
     <ProjectReference Include="..\ChatRoom.Utils\ChatRoom.Utils.csproj" />
